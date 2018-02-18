@@ -40,6 +40,7 @@ public:
 private:
   const HttpSampleDecoderFilterConfigSharedPtr config_;
   StreamDecoderFilterCallbacks* decoder_callbacks_;
+  HeaderMap* decoder_headers_{};
 
   const LowerCaseString headerKey() const;
   const std::string headerValue() const;
