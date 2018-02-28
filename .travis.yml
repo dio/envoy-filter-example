@@ -1,0 +1,13 @@
+language: cpp
+dist: xenial
+os:
+- linux
+before_install:
+- echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+- curl --silent https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+- sudo apt-get update -o Dir::Etc::sourcelist="sources.list.d/bazel.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+- sudo apt-get install openjdk-8-jdk bazel
+- export BAZEL_VERSION=0.11.0
+- export BAZEL_DEB=bazel_$(BAZEL_VERSION)_amd64.deb
+- curl --silent --output /tmp/$(BAZEL_DEB) "https://storage.googleapis.com/bazel-apt/pool/jdk1.8/b/bazel/$(BAZEL_DEB)"
+- sudo dpkg --force-all -i /tmp/$(BAZEL_DEB)
