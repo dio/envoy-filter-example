@@ -1,6 +1,17 @@
-language: cpp
 dist: xenial
-os:
-    - linux
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - wget
+      - pkg-config
+
 before_install:
-    - sudo apt-get -qq update
+    - wget https://github.com/bazelbuild/bazel/releases/download/0.11.0/bazel_0.11.0-linux-x86_64.deb
+    - sha256sum -c tools/bazel_0.11.0-linux-x86_64.deb.sha256
+    - sudo dpkg -i bazel_0.11.0-linux-x86_64.deb
+
+script:
+    - bazel test //http-filter-example:http_filter_integration_test
