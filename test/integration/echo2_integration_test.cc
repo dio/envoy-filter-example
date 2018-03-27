@@ -7,7 +7,7 @@ class Echo2IntegrationTest : public BaseIntegrationTest,
 
   std::string echoConfig() {
     return TestEnvironment::readFileToStringForTest(
-        TestEnvironment::runfilesPath("echo2_server.yaml"));
+        TestEnvironment::runfilesPath("test/fixtures/configs/v2/echo2_server.yaml"));
   }
 
 public:
