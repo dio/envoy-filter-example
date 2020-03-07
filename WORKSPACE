@@ -1,8 +1,13 @@
 workspace(name = "envoy_filter_example")
 
-local_repository(
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+ENVOY_SHA = "bd7c97858556c2851589d7fb73a25e99b8687df3"
+
+http_archive(
     name = "envoy",
-    path = "envoy",
+    strip_prefix = "envoy-" + ENVOY_SHA,
+    url = "https://github.com/envoyproxy/envoy/archive/" + ENVOY_SHA + ".zip",
 )
 
 load("@envoy//bazel:api_binding.bzl", "envoy_api_binding")

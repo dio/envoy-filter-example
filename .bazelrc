@@ -1,1 +1,1 @@
-import %workspace%/envoy/.bazelrc
+try-import %workspace%/envoy/.bazelrc
